@@ -7,3 +7,4 @@ Mobile controlled rc car (2nd-elec. ASU Project)
 - Yasmine Mohamed Nour
 - Nada walid mohamed
 - Yomna magdy soliman 
+- Omar Nagah Sayed
