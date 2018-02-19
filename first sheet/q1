@@ -1,0 +1,11 @@
+int lpin = 13;
+void setup() {
+  pinMode(lpin , OUTPUT);
+}
+
+void loop() {
+digitalWrite(LEDPIN , HIGH);
+delay(250);
+digitalWrite (LEDPIN , LOW );
+delay(750);
+}
