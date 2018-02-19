@@ -1,0 +1,25 @@
+int LED;
+
+void setup() {
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+
+}
+
+void loop() {
+
+  for (LED = 4; LED <= 7; LED++) {
+    digitalWrite(LED, HIGH);
+    delay(1000);
+    digitalWrite(LED, LOW);
+  }
+
+  for (LED = 6; LED > 4; LED--) {
+    digitalWrite(LED, HIGH);
+    delay(1000);
+    digitalWrite(LED, LOW);
+  }
+
+}
