@@ -6,8 +6,8 @@ pinMode(pin1,OUTPUT);
 
 void loop() {
   digitalWrite(pin1,HIGH);
-  delay(0.0005);
+  delay(500);
   digitalWrite(pin1,LOW);
-  delay(0.0015);
+  delay(1500);
 
 }
