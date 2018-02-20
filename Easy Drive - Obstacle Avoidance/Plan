@@ -1,0 +1,17 @@
+given time: 3 weeks (3rd-4th-5th)
+
+target time: within 10 days
+
+involved tasks:
+-searching for suitable sensors
+-searching for suitable motor drive
+-learning arduino
+-programming the arduino
+
+timeline:
+•by end of 23/2 suitable sensors should be chosen
+•by the end of 22/2 everyone should be well aquatinted with arduino
+•by end of 1/3 the code should be written 
+
+note1: future tasks should be taken into consideration while choosing the sensors and motor drive 
+note2: searching for suitable sensors and motor drive include understanding how they work and their connection to the arduino
