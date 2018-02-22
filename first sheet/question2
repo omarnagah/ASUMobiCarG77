@@ -1,0 +1,45 @@
+Int LED1=4;
+Int LED2=5;
+Int LED3=6;
+Int LED4=7;
+Int on=1000;
+Void setup()
+{
+pinMode(LED1,OUTPUT);
+pinMode(LED2,OUTPUT);
+pinMode(LED3,OUTPUT);
+pinMode(LED4,OUTPUT);
+}
+Void loop()
+{
+digitalWrite(LED1,HIGH);
+digitalWrite(LED2,LOW);
+digitalWrite(LED3,LOW);
+digitalWrite(LED4,LOW);
+delay(on);
+digitalWrite(LED1,LOW);
+digitalWrite(LED2,HIGH);
+digitalWrite(LED3,LOW);
+digitalWrite(LED4,LOW);
+delay(on);
+digitalWrite(LED1,LOW);
+digitalWrite(LED2,LOW);
+digitalWrite(LED3,HIGH);
+digitalWrite(LED4,LOW);
+delay(on);
+digitalWrite(LED1,LOW);
+digitalWrite(LED2,LOW);
+digitalWrite(LED3,LOW);
+digitalWrite(LED4,HIGH);
+delay(on);
+digitalWrite(LED1,LOW);
+digitalWrite(LED2,LOW);
+digitalWrite(LED3,HIGH);
+digitalWrite(LED4,LOW);
+delay(on);
+digitalWrite(LED1,LOW);
+digitalWrite(LED2,HIGH);
+digitalWrite(LED3,LOW);
+digitalWrite(LED4,LOW);
+delay(on);
+}
