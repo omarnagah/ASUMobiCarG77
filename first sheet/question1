@@ -1,0 +1,14 @@
+int i=9;
+int on=500;
+int off=1500;
+Void setup()
+{
+pinMode (i,OUTPUT)
+}
+Void loop()
+{
+digitalWrite(i,HIGH);
+delay(on);
+digitalWrite(i,LOW):
+delay(off);
+}
