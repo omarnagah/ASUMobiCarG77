@@ -1,6 +1,4 @@
 This folder contains all data related to the line following robot.
 
-As a refrence we follow this link: http://www.instructables.com/id/Line-Follower-Robot-With-Arduino-Really-Fast-and-R/
-
 The robot uses 5 IR sensors to find an average value of error, this value is then translated into output voltage that drives
 the motors, hence steer the robot.
