@@ -11,7 +11,7 @@ min[x]=1023;
 void callibration ()
 {
 float ms=millis();
-while(millis<300+ms)
+while(millis()<300+ms)
 {
 turnRight();
 delay(10ms);
