@@ -1,4 +1,4 @@
-0sensors[5]={pin1,pin2,pin3,pin4,pin5};//change it when changing the pins in our project
+sensors[5]={pin1,pin2,pin3,pin4,pin5};//change it when changing the pins in our project
 min[5];//black reflection
 max[5];//white reflection
 void setup()
@@ -11,7 +11,7 @@ min[x]=1023;
 void callibration ()
 {
 float ms=millis();
-while(millis<3000+ms)
+while(millis<300+ms)
 {
 turnRight();
 delay(10ms);
