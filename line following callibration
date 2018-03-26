@@ -15,7 +15,6 @@ while(millis<300+ms)
 {
 turnRight();
 delay(10ms);
-}
 for(int y=0;y<=4;y++)
 {
 float f=analogRead(sensors[y]);
@@ -23,5 +22,6 @@ if(f<min[y]&&f!=min[y])
 min[y]=f;
 else if (f>max[y]&&f!=max[y])
 max[y]=f;
+}
 }
 }
