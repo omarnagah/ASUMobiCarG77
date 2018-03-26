@@ -1,0 +1,23 @@
+Void setup(){
+for(int x = 0; x <5; x++)
+  {
+      sens_max[x] = 0;
+      sens_min[x] = 1023;
+  }
+}
+  
+void calibrate(int cal_time, int cal_speed, int cal_dir){
+  ms = millis();
+  dW(LEDG, LOW);
+  while((ms + cal_time) > millis()){
+    dW(LEDG, millis()%100 < 50);        //Blink led
+    if(cal_dir == RIGHT_DIR)  motorSpeed(cal_speed, -cal_speed);
+    if(cal_dir == LEFT_DIR)  motorSpeed(-cal_speed, cal_speed);
+    
+    int sens_value[5];
+    for(int x = 0; x <5; x++){
+      sens_value[x] = analogRead(SENSOR[x]);
+      sens_min[x] = (sens_value[x] < sens_min[x]) ? sens_value[x] : sens_min[x];
+      sens_max[x] = (sens_value[x] > sens_max[x]) ? sens_value[x] : sens_max[x];
+    }
+  }
