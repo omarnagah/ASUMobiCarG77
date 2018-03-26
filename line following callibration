@@ -25,3 +25,9 @@ max[y]=f;
 }
 }
 }
+void loop()
+{
+delay(500);
+callibration();
+}
+
