@@ -13,8 +13,8 @@ void calibrate(int cal_time, int cal_speed, int cal_dir){
   dW(LEDG, LOW);
   while((ms + cal_time) > millis()){
     dW(LEDG, millis()%100 < 50);        //Blink led
-    if(cal_dir == RIGHT_DIR)  motorSpeed(cal_speed, -cal_speed);
-    if(cal_dir == LEFT_DIR)  motorSpeed(-cal_speed, cal_speed);
+    if(cal_dir == RIGHT_DIR)  motorSpeed(cal_speed, -cal_speed);//we must change this function bec we use 4 motors replace it with the function of right direction
+    if(cal_dir == LEFT_DIR)  motorSpeed(-cal_speed, cal_speed);//same as the previous line but left direction
     
     int sens_value[5];
     for(int x = 0; x <5; x++){
