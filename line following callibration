@@ -1,0 +1,27 @@
+sensors[5]={pin1,pin2,pin3,pin4,pin5};//change it when changing the pins in our project
+min[5];//black reflection
+max[5];//white reflection
+void setup()
+{
+for (int x=0;x<=4;x++)
+{
+max[x]=0;
+min[x]=1023;
+}//to setup the min and max brightness for all to get accurate comparison
+void callibration ()
+{
+float ms=millis();
+while(millis<300+ms)
+{
+turnRight();
+delay(10ms);
+}
+for(int y=0;y<=4;y++)
+{
+float f=analogRead(sensors[y]);
+if(f<min[y]&&f!=min[y])
+min[y]=f;
+else if (f>max[y]&&f!=max[y])
+max[y]=f;
+}
+}
