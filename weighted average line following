@@ -1,0 +1,35 @@
+float get_line_pos(int color, int last_dir){
+    float line = 0;
+    int line_detected = 0;
+    float sens_scaled[5];
+    float avg_num = 0;          //Average numerator
+    float avg_den = 0;          //Average denominator
+    
+    for(int x = 0; x < 5; x++){
+        //Scale from 0 to R_SENS
+        sens_scaled[x] = analogRead(SENSOR[x]) - sens_min[x];
+        sens_scaled[x] *= R_SENS;
+        sens_scaled[x] /= (sens_max[x] - sens_min[x]);
+        
+        if(color == BLACK){
+            sens_scaled[x] = R_SENS - sens_scaled[x];     //Reverse scale to go from R_SENS to 0
+        }
+        if(sens_scaled[x] >= (float) R_SENS * ((float)P_LINE_MIN / 100.0)){   //At least one sensor has to detect a line
+            line_detected = 1;
+        }
+        
+        avg_num += sens_scaled[x] * x * WEIGHT_UNIT;
+        avg_den += sens_scaled[x];        
+    }
+    if(line_detected == 1){
+        line = avg_num / avg_den;                           //Weighted average
+        line = line - (WEIGHT_UNIT * (N_SENS - 1) / 2);     //Change scale from 0 _ 4000 to -2000 _ 2000
+        dW(LEDG, LOW);
+    }else{
+        line = WEIGHT_UNIT * (N_SENS - 1) * last_dir;       //Use last direction to calculate error as the maximum value
+        line = line - (WEIGHT_UNIT * (N_SENS - 1) / 2);     //Change scale
+        dW(LEDG, HIGH);
+    }
+    
+    return line;
+}
