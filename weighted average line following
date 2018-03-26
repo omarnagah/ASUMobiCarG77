@@ -1,3 +1,7 @@
+#define COLOR   BLACK         //Line color
+#define R_SENS        1000    //Sensor readings are mapped to this range
+#define WEIGHT_UNIT   1000    //Unit for weighted average
+
 float get_line_pos(int color, int last_dir){
     float line = 0;
     int line_detected = 0;
