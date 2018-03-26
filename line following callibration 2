@@ -1,3 +1,5 @@
+#define CAL_SPEED     400     //Sensor calibration speed we can change it 
+#define CAL_TIME      300     //Calibration time we can change it 
 Void setup(){
 for(int x = 0; x <5; x++)
   {
@@ -21,3 +23,13 @@ void calibrate(int cal_time, int cal_speed, int cal_dir){
       sens_max[x] = (sens_value[x] > sens_max[x]) ? sens_value[x] : sens_max[x];
     }
   }
+void motorSpeed(int m1, int m2) {           //From -1000 to 1000
+  int pwm1 = map(abs(m1), 0, 1000, 0, 255);
+  int pwm2 = map(abs(m2), 0, 1000, 0, 255);
+  pwm1 = (m1>0) ? 255-pwm1 : pwm1;
+  pwm2 = (m2>=0) ? pwm2 : 255-pwm2; 
+  analogWrite(MOT2, pwm1);
+  analogWrite(MOT4, pwm2);
+  digitalWrite(MOT1, (m1 > 0) ? HIGH : LOW);
+  digitalWrite(MOT3, (m2 >= 0) ? LOW : HIGH);
+}
