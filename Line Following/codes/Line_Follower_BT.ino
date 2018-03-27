@@ -3,17 +3,18 @@
 #define RaceSBY 'U'
 #define CalKey 'w'
 #define RaceKey 'u'
+#define SBY 'S'
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(300);
+  Serial.begin(9600);
 }
 
 void loop() {
 
   if (Serial.available()) {
     if (BTread == CalSBY) {
-      while (BTread == CalSBY) {
+      while (BTread == SBY) {
         //calibration stand-by
       }
       if (BTread == CalKey) {
@@ -21,7 +22,7 @@ void loop() {
       }
     }
     else if (BTread == RaceSBY) {
-      while (BTread == RaceSBY) {
+      while (BTread == SBY) {
         //race stand-by
       }
       if (BTread == RaceKey) {
