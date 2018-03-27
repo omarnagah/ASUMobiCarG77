@@ -1,15 +1,9 @@
 #define BTread Serial.read()
-#define CalSBY 'W'
-#define RaceSBY 'U'
-#define CalKey 'w'
-#define RaceKey 'u'
-#define SBY 'S'
-
-//'W' == front lights on
-//'w' == front lights off
-//'U' == back lights on
-//'u' == back lights off
-//'S' == no action
+#define CalSBY 'W'  //'W' == front lights on
+#define RaceSBY 'U' //'U' == back lights on
+#define CalKey 'w'  //'w' == front lights off
+#define RaceKey 'u' //'u' == back lights off
+#define SBY 'S'     //'S' == no action
 
 void setup() {
   // put your setup code here, to run once:
