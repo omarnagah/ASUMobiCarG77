@@ -5,6 +5,12 @@
 #define RaceKey 'u'
 #define SBY 'S'
 
+//'W' == front lights on
+//'w' == front lights off
+//'U' == back lights on
+//'u' == back lights off
+//'S' == no action
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
