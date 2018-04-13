@@ -1,0 +1,22 @@
+#define MOT1  10
+#define MOT2  9
+#define MOT3  6
+#define MOT4  5
+void setup() {
+  pinMode(MOT1, OUTPUT);
+  pinMode(MOT2, OUTPUT);
+  pinMode(MOT3, OUTPUT);
+  pinMode(MOT4, OUTPUT);
+
+}
+
+void loop() {
+  analogWrite(MOT1, HIGH);
+
+  digitalWrite(MOT2, LOW);
+
+  digitalWrite(MOT4, LOW);
+
+  digitalWrite(MOT3, HIGH);
+
+}
