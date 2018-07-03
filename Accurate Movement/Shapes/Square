@@ -1,0 +1,64 @@
+
+#define LM1 6 // left motor M1a
+#define LM2 5 // left motor M2a
+#define RM1 10 // right motor M2a
+#define RM2 9 // right motor M2b
+const int dataIN = 2; //IR sensor INPUT
+
+unsigned long prevmillis; // To store time
+unsigned long duration; // To store time difference
+
+int rpm,n=0,m=60,i=0, counter=0; // RPM value
+float distance=0;
+
+boolean currentstate; // Current state of IR input scan
+boolean prevstate; // State of IR sensor in previous scan
+
+void setup()
+{
+         
+     prevstate = LOW;
+  pinMode(dataIN,INPUT);
+  Serial.begin(9600);
+  
+}
+
+void loop()
+{
+  for(;i<=8;i++){ 
+    if(i==8)
+    {m=60;}
+   if(m==120 || m==60){
+           analogWrite(LM1, 150);
+digitalWrite(LM2, LOW);
+analogWrite(RM1, 150);
+digitalWrite(RM2, LOW);}
+else if(m==12){
+  //Serial.println("---");
+   analogWrite(LM2, 200);
+          digitalWrite(LM1, LOW);
+          analogWrite(RM1, 200);
+          digitalWrite(RM2, LOW);
+}
+  while(n<m)
+  {
+  currentstate = digitalRead(dataIN); // Read IR sensor state
+ if( prevstate != currentstate) // If there is change in input
+   {
+     if( currentstate == HIGH ) // If input only changes from LOW to HIGH
+       {
+       n++;
+       }
+   }
+  prevstate = currentstate; // store this scan (prev scan) data for next scan
+  }
+ if(m==120 || m==60)
+ {m=12;}
+ else if(m==12)
+ {m=120;}
+ n=0;}
+   analogWrite(LM1, 0);
+digitalWrite(LM2, LOW);
+analogWrite(RM1, 0);
+digitalWrite(RM2, LOW);
+ }
