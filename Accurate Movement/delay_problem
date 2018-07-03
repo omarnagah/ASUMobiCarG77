@@ -1,0 +1,35 @@
+volatile unsigned long count = 0;
+unsigned long copyCount = 0;
+
+unsigned long lastRead = 0;
+unsigned long interval = 1000;//one second
+
+void setup()
+{
+  Serial.begin(115200);
+  Serial.println("start...");
+  
+  pinMode(2,INPUT_PULLUP);
+  attachInterrupt(0, isrCount, RISING); //interrupt signal to pin 2
+}
+
+void loop()
+{
+  if (millis() - lastRead >= interval) //read interrupt count every second
+  {
+    lastRead  += interval;
+    // disable interrupts, make copy of count, reenable interrupts
+    noInterrupts();
+    copyCount = count;
+    count = 0;
+    interrupts();
+ 
+    Serial.println(copyCount);
+
+  }
+}
+
+void isrCount()
+{
+  count++;
+}
