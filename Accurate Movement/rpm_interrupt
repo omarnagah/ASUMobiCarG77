@@ -1,0 +1,82 @@
+int LS = 2,RS = 3;                // Hall sensor at pin 2 & 3
+
+volatile int counter1, counter2;
+
+unsigned int rpmL,rpmR;
+
+unsigned long passedtime;
+
+const float D = 6.5 ; // Diameter in cm
+
+float speedL, speedR;
+float distance=0;
+
+void isr1()
+
+ {
+
+   //Each rotation, this interrupt function is run twice, so take that into consideration for
+
+   //calculating RPM
+
+   //Update count
+
+      counter1++;
+
+ }
+ void isr2()
+ {
+  counter2++;
+ }
+
+void setup()
+
+ {Serial.begin(9600);
+
+   //Intiates Serial communications
+
+   attachInterrupt(0, isr1, RISING); //Interrupts are called on Rise of Input
+   attachInterrupt(1, isr2, RISING);
+   pinMode(LS, INPUT); //Sets hallsensor as input
+
+   counter1 = counter2 = 0;
+
+   rpmL = rpmR = 0;
+
+   passedtime = 0; //Initialise the values
+
+ }
+ void loop()
+ {
+   delay(1000);//Update RPM every second
+
+   detachInterrupt(0); //Interrupts are disabled
+   detachInterrupt(1);
+   rpmL = 60*1000/(millis() - passedtime)*counter1;
+   rpmR = 60*1000/(millis() - passedtime)*counter2;
+   
+   speedL = 3.14159*D*(rpmL/60); // speed in cm/s
+   speedR = 3.14159*D*(rpmR/60);
+   passedtime = millis();
+
+   distance += D*((counter1 + counter2)/2.0);
+   while(distance < 40)
+   {
+    // move forward
+   }
+
+   counter1 = counter2 = 0;
+
+   Serial.print("RPML= ");
+
+   Serial.println(rpmL); //Print out result to monitor
+
+   Serial.print("RPMR= ");
+
+   Serial.println(rpmR);
+
+   Serial.println();
+   
+   attachInterrupt(0, isr1, RISING);   //Restart the interrupt processing
+   attachInterrupt(1, isr2, RISING);
+  }
