@@ -1,9 +1,4 @@
-/*==========================================================================/
-  To put car in line follower mode you have to turn front lights on and off,
-  wait for calibration to end and then turn back lights on and off.
-  To start race successfully no other buttons should be pressed.
-  To end race turn on front or back lights.
-  /==========================================================================*/
+
 
 #define BTread Serial.read()
 #define CalSBY 'W'    //'W' == front lights on
@@ -38,17 +33,17 @@
 #define RIGHT_DIR     1
 #define LEFT_DIR      0
 #define PRESS         0
-#define CAL_SPEED     400     //Sensor calibration speed
+#define CAL_SPEED     350     //Sensor calibration speed
 #define CAL_TIME      3000     //Calibration time
 
-/===============these values are not tested yet=============================================/
-#define P_LINE_MIN    80     //Minimum brightness percentage to consider part of the line
+//=========================================================================================/
+#define P_LINE_MIN   65     //Minimum brightness percentage to consider part of the line
 
-const float SPEED = 1000;
-const float KP = 0.35;
-const float KD = 3;
-const float KI = 0.3;
-/=============================================================================================/
+const float SPEED = 800;
+const float KP = 0.4;
+const float KD = 4;
+const float KI = 0.04;
+//=============================================================================================/
 
 /* GLOBAL VARIABLES */
 
@@ -138,12 +133,12 @@ void race(void) {
     PID_correction = (PID_correction > max_correction) ? max_correction : PID_correction;
     motorSpeed((SPEED - PID_correction), SPEED);
     Serial.print("correction > 0\t");
-    Serial.println((SPEED - PID_correction), DEC);
+    Serial.println(( PID_correction), DEC);
   } else {
     PID_correction = (PID_correction < -max_correction) ? -max_correction : PID_correction;
     motorSpeed(SPEED, SPEED + PID_correction);
     Serial.print("correction < 0\t");
-    Serial.println((SPEED + PID_correction), DEC);
+    Serial.println(( PID_correction), DEC);
   }
 }
 
