@@ -1,0 +1,50 @@
+#define LM1 10 // left motor M1a
+#define LM2 9 // left motor M2a
+#define RM1 6 // right motor M2a
+#define RM2 5 // right motor M2b
+unsigned long timer,time_fc;
+int cross_ln=0;
+boolean prevstate,currentstate,done=0;
+void setup() {
+Serial.begin(9600);
+pinMode(2, INPUT);
+pinMode(LM1, OUTPUT);
+pinMode(LM2, OUTPUT);
+pinMode(RM1, OUTPUT);
+pinMode(RM2, OUTPUT);
+prevstate = LOW;
+while(cross_ln < 2){
+analogWrite(LM1, 100);
+digitalWrite(LM2, LOW);
+digitalWrite(RM1, LOW);
+analogWrite(RM2, 100);
+currentstate = digitalRead(2);
+if( prevstate != currentstate) // If there is change in input
+   {
+     if( currentstate == HIGH ) // If input only changes from LOW to HIGH
+       {cross_ln++;}
+   }
+   
+prevstate = currentstate; // store this scan (prev scan) data for next scan
+if(cross_ln == 1 && done == 0)
+  {timer = millis();  done=1;}
+}
+time_fc = millis() - timer;
+//digitalWrite(LM1, LOW);
+//analogWrite(LM2, 100);
+//analogWrite(RM1, 100);
+//digitalWrite(RM2, LOW);
+}
+
+void loop() {
+analogWrite(LM1, 100);
+digitalWrite(LM2, LOW);
+analogWrite(RM1, 100);
+digitalWrite(RM2, LOW);
+delay(1000);
+digitalWrite(LM1, LOW);
+analogWrite(LM2, 100);
+analogWrite(RM1, 100);
+digitalWrite(RM2, LOW);
+delay(time_fc/4);
+}
