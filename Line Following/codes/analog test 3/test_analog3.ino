@@ -41,7 +41,7 @@
 
 const float SPEED = 800;
 const float KP = 0.4;
-const float KD = 4;
+const float KD = 12;
 const float KI = 0.04;
 //=============================================================================================/
 
